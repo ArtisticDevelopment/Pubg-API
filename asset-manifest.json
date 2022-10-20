@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Pubg-API/static/css/main.2853e1e8.css",
+    "main.js": "/Pubg-API/static/js/main.5c4adc59.js",
+    "static/media/showcase.jpg": "/Pubg-API/static/media/showcase.c1981cbc7a86f2e58d19.jpg",
+    "index.html": "/Pubg-API/index.html",
+    "main.2853e1e8.css.map": "/Pubg-API/static/css/main.2853e1e8.css.map",
+    "main.5c4adc59.js.map": "/Pubg-API/static/js/main.5c4adc59.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2853e1e8.css",
+    "static/js/main.5c4adc59.js"
+  ]
+}
