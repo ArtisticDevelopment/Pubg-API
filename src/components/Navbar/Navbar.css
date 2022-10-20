@@ -1,0 +1,48 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  padding: 0 2rem;
+}
+
+a{
+  padding: 1rem;
+  color: yellow;
+  text-decoration: none;
+  border: solid transparent 2px;
+}
+
+a:hover{
+  border: solid yellow 2px;
+}
+
+nav{
+  color: yellow;
+  padding: 2rem;
+  background-color: black;
+ 
+  display: flex;
+  justify-content: center;
+
+}
+
+ul{
+  
+
+  display: flex;
+  padding-top: 10px;
+  font-size: larger;
+ 
+}
+
+li{
+  
+  padding: 0 1rem;
+}
+
+.logo{
+  font-size: 30px;
+}
