@@ -12,33 +12,35 @@ const Home = () => {
 
   //axios request to recieve API data
   const getAPI = async () => {
-    await axios
-      .get(
+    const apiKey =
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkNzA4NWJlMC0wNjFlLTAxM2ItNTRlNS0xZGJhZTgyMjUwMWUiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNjYxMzc1MzE1LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6ImFydHNwdWJnIn0.odUYRCNquK0EXDXJmwgkjq92k4YJZonyN2yrP25_Ah4";
+
+    const headers = {
+      Authorization: `Bearer ${apiKey}`,
+      Accept: "application/vnd.api+json",
+    };
+
+    //async await handles our .thens inside of a variable
+    //try-catch block to avoid .then and .catch
+    try {
+      const data = await axios.get(
         `https://api.pubg.com/shards/${platform}/players?filter[playerNames]=${gamertag}`,
         {
-          headers: {
-            authorization:
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkNzA4NWJlMC0wNjFlLTAxM2ItNTRlNS0xZGJhZTgyMjUwMWUiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNjYxMzc1MzE1LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6ImFydHNwdWJnIn0.odUYRCNquK0EXDXJmwgkjq92k4YJZonyN2yrP25_Ah4",
-
-            accept: "application/json",
-          },
+          headers,
         }
-      )
-      .then((resp) => {
-        setUser(resp.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    //sets user to data and console logs
-    console.log(user);
+      );
+      //sets user to data and console logs
+      console.log(data);
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   const onSubmit = (e) => {
     //prevent page from refreshing
     e.preventDefault();
     getAPI();
+    console.log(user);
     setUser({ user: "", platform: "" });
   };
 
@@ -62,8 +64,12 @@ const Home = () => {
           </label>
           <label className="form-label" style={{ width: "100%" }}>
             Platform:
-            <select onChange={(e) => onChange(e)}>
-              <option placeholder="platform"></option>
+            <select
+              name="platform"
+              value={platform}
+              onChange={(e) => onChange(e)}
+            >
+              <option placeholder="platform">select an option!</option>
               <option value={"Xbox"}>Xbox</option>
               <option value={"Playstion"}>PlayStation</option>
             </select>
