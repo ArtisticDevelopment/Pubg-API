@@ -32,7 +32,7 @@ const App = () => {
     <div className="App">
       <Navbar />
       <div className="container"></div>
-      <Home exact path="/" />
+      <Home exact path="/" element={Home} />
     </div>
   );
 };

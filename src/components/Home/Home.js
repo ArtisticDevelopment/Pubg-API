@@ -12,12 +12,9 @@ const Home = () => {
 
   //axios request to recieve API data
   const getAPI = async () => {
-      await axios
+    await axios
       .get(
-        "https://api.pubg.com/shards/" +
-          platform +
-          "/players?filter[playerNames]=" +
-          gamertag,
+        `https://api.pubg.com/shards/${platform}/players?filter[playerNames]=${gamertag}`,
         {
           headers: {
             authorization:
@@ -39,8 +36,10 @@ const Home = () => {
   };
 
   const onSubmit = (e) => {
+    //prevent page from refreshing
     e.preventDefault();
     getAPI();
+    setUser({ user: "", platform: "" });
   };
 
   const onChange = (e) => {
@@ -58,15 +57,15 @@ const Home = () => {
               value={gamertag}
               type="text"
               name="gamertag"
-              onChange={onChange}
+              onChange={(e) => onChange(e)}
             />
           </label>
           <label className="form-label" style={{ width: "100%" }}>
             Platform:
-            <select>
+            <select onChange={(e) => onChange(e)}>
               <option placeholder="platform"></option>
-              <option value={platform}>Xbox</option>
-              <option value={platform}>PlayStation</option>
+              <option value={"Xbox"}>Xbox</option>
+              <option value={"Playstion"}>PlayStation</option>
             </select>
           </label>
           <input id="form-submit" type="submit" value="Submit" />
