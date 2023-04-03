@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Home.css";
+import "../GamerData/GamerData";
+import GamerData from "../GamerData/GamerData";
+
 const Home = () => {
   const [user, setUser] = useState({
     gamertag: "",
@@ -10,6 +13,7 @@ const Home = () => {
   //deconstruct variables so we don't have to call gamer.-- every time
   let { gamertag, platform } = user;
 
+  //----------------------------------------------------------------
   //axios request to recieve API data
   const getAPI = async () => {
     const apiKey =
@@ -20,7 +24,9 @@ const Home = () => {
       Accept: "application/vnd.api+json",
     };
 
-    //async await handles our .thens inside of a variable
+    //async await handles our .thens in one step
+    //fetch() returns a promise that makes you use .then to make into a JSON
+    //the JSON returns another promise that you use .then AGAIN to make useable by user
     //try-catch block to avoid .then and .catch
     try {
       const data = await axios.get(
@@ -29,21 +35,38 @@ const Home = () => {
           headers,
         }
       );
+      //set deep directory to variable to avoid sphagetti
+      const gamerData = data.data.data[0];
+
+      console.log(gamerData);
+
+      console.log(
+        "this is our attempt at retrieving specific data " +
+          gamerData.attributes.name
+      );
       //sets user to data and console logs
-      console.log(data);
+      setUser({
+        gamertag: gamerData.attributes.name,
+        platform: gamerData.attributes.shardID,
+      });
     } catch (err) {
       console.log(err.message);
     }
   };
+  //----------------------------------------------------------------
 
+  //Submit Function
   const onSubmit = (e) => {
     //prevent page from refreshing
     e.preventDefault();
     getAPI();
-    console.log(user);
-    setUser({ user: "", platform: "" });
+    console.log(
+      "this is the log from Submit " + user.gamertag + " and " + user.platform
+    );
+    setUser({ gamertag: "", platform: "" });
   };
 
+  //onChange function to change input values in UI
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -69,14 +92,15 @@ const Home = () => {
               value={platform}
               onChange={(e) => onChange(e)}
             >
-              <option placeholder="platform">select an option!</option>
-              <option value={"Xbox"}>Xbox</option>
-              <option value={"Playstion"}>PlayStation</option>
+              <option placeholder="platform"></option>
+              <option value={"xbox"}>Xbox</option>
+              <option value={"psn"}>PlayStation</option>
             </select>
           </label>
           <input id="form-submit" type="submit" value="Submit" />
         </form>
       </div>
+      <GamerData id="GD-component" user={user} />
     </main>
   );
 };
