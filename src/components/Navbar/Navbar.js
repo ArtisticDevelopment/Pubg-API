@@ -11,7 +11,7 @@ const Navbar = () => {
             Pubg API
           </a>
         </div>
-        <div className="container">
+        <div className="nav-container">
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>
               <a href="/home">Home</a>
