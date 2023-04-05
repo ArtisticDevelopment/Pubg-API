@@ -15,5 +15,10 @@ background-image: url("../src/Media/showcase.jpg");
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-height: 100vh;
+padding: 10px 0;
+margin: auto;
+display: flex;
+justify-content: center;
+flex-direction: column;
 }
+

@@ -6,6 +6,7 @@
 
 body{
   padding: 0 2rem;
+  
 }
 
 a{
@@ -22,10 +23,17 @@ a:hover{
 nav{
   color: yellow;
   padding: 2rem;
-  background-color: black;
- 
+  width: 50%;
+  
+
   display: flex;
   justify-content: center;
+  background: rgba(51, 51, 51, 0.468);
+box-shadow: 0 8px 32px 0 rgba(255, 217, 0, 0.37);
+backdrop-filter: blur( 13.5px );
+-webkit-backdrop-filter: blur( 13.5px );
+border-radius: 20px;
+border: 1px solid rgba(0, 0, 0, 0.18);
 
 }
 

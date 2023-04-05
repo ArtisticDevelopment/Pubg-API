@@ -72,7 +72,7 @@ const Home = () => {
   };
 
   return (
-    <main>
+    <main className="main-container">
       <div className="form-wrapper">
         <form className="form-container" onSubmit={(e) => onSubmit(e)}>
           <h2 id="form-header">Enter your gamertag and platform!</h2>
